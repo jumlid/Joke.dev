@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="contain">
+            <h1 id="setup">Enter your parameter</h1>
+            <h2 id="dilevery"></h2>
+        </div>
+
+        <div class="settings">
+            <label for=""><input type="checkbox" id="Programming"> Programming</label>
+            <label for=""><input type="checkbox" id="Misc"> Misc</label>
+            <label for=""><input type="checkbox" id=" Dark"> Dark</label>
+            <label for=""><input type="checkbox" id="Pun"> Pun</label>
+            <label for=""><input type="checkbox" id="Spooky"> Spooky</label>
+            <label for=""><input type="checkbox" id="Christmas"> Christmas</label>
+            <button id="start" onclick="joke()">Done</button>
+
+        </div>
+    </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.986);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .contain {
+
+
+            text-align: center;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .settings {
+            padding: 15px;
+
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+
+        function joke() {
+            let temp = []
+            let opt = document.querySelectorAll("input")
+            //console.log(opt)
+            opt.forEach(e => {
+                if (e.checked) {
+                    temp.push(e.id)
+
+
+                }
+            }
+
+            )
+            start(temp.join(','))
+
+
+        }
+        function start(url) {
+
+            //console.log(url)
+            fetch(`https://v2.jokeapi.dev/joke/${url}`)
+                .then(res => res.json())
+                .then(data => {
+                 //   console.log(data)
+                    if (data.type === 'single') {
+                        document.getElementById('setup').innerText = data.joke
+                    }
+                    else {
+
+
+                        document.getElementById('setup').innerText = data.setup
+                        document.getElementById('dilevery').innerText = data.delivery
+
+
+                    }
+                }
+
+
+
+
+                )
+                .catch(e => {
+                    document.getElementById('setup').innerText = e
+                })
+
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
