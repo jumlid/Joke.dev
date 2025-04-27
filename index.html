@@ -17,11 +17,11 @@
         <div class="settings">
             <label for=""><input type="checkbox" id="Programming"> Programming</label>
             <label for=""><input type="checkbox" id="Misc"> Misc</label>
-            <label for=""><input type="checkbox" id=" Dark"> Dark</label>
+            <label for=""><input type="checkbox" id="Dark"> Dark</label>
             <label for=""><input type="checkbox" id="Pun"> Pun</label>
             <label for=""><input type="checkbox" id="Spooky"> Spooky</label>
             <label for=""><input type="checkbox" id="Christmas"> Christmas</label>
-            <button id="start" onclick="joke()">Done</button>
+            <button id="start" style="cursor: pointer;" onclick="joke()">Done</button>
 
         </div>
     </div>
@@ -90,7 +90,7 @@
             fetch(`https://v2.jokeapi.dev/joke/${url}`)
                 .then(res => res.json())
                 .then(data => {
-                 //   console.log(data)
+                    //   console.log(data)
                     if (data.type === 'single') {
                         document.getElementById('setup').innerText = data.joke
                     }
